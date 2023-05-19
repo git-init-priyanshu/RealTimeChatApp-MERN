@@ -74,6 +74,7 @@ p {
   box-shadow: 3px 3px 17px 2px #94cfff43;
 }
 .center {
+  clear: both;
   max-width: 24%;
   background-color: #585858;
   color: #adadad;

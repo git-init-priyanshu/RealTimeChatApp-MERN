@@ -10,9 +10,9 @@ function App() {
 
   const [msgArr, setMsgArr] = useState([]);
 
-  const append = (msg, position) => {
+  const append = (msg, position, name) => {
     setMsgArr((currentArr) => {
-      return [...currentArr, { msg, position }];
+      return [...currentArr, { msg, position, name }];
     });
   };
 
@@ -24,12 +24,12 @@ function App() {
       socket.emit("new-user-joined", userName);
 
       socket.on("user-joined", (name) => {
-        append(`${name} joined the chat`, `center`);
+        append(`${name} joined the chat`, `center`, `${name}`);
       });
 
       socket.on("receive", (data) => {
         if (data.name !== userName) {
-          append(`${data.msg}`, `left`);
+          append(`${data.msg}`, `left`, `${data.name}`);
           console.log("append");
         }
       });
@@ -40,9 +40,9 @@ function App() {
     <>
       {name ? (
         <div>
-          <DisplayMsg msgArr={msgArr} name={name} />
+          <DisplayMsg msgArr={msgArr} />
           <TypeMsg
-            appendFun={(inpMsg, inpPos) => append(inpMsg, inpPos)}
+            appendFun={(inpMsg, inpPos, name) => append(inpMsg, inpPos, name)}
             name={name}
           />
         </div>

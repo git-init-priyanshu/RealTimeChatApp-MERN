@@ -6,7 +6,7 @@ import io from "socket.io-client";
 
 const socket = io("http://localhost:5001");
 
-export default function DisplayMsg({ msgArr, name }) {
+export default function DisplayMsg({ msgArr }) {
   // useEffect(() => {
   //   socket.on("receive" , (data)=>{
 
@@ -19,7 +19,7 @@ export default function DisplayMsg({ msgArr, name }) {
         if (item.position === "right") {
           return <RightText msg={item.msg} />;
         } else if (item.position === "left") {
-          return <LeftText msg={item.msg} name={name} />;
+          return <LeftText msg={item.msg} name={item.name} />;
         } else if (item.position === "center") {
           return <CenterText msg={item.msg} />;
         }
