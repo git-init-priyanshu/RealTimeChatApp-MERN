@@ -1,8 +1,10 @@
 import React from "react";
-import "./displayMsg.css";
+
 import RightText from "./components/RightText";
 import LeftText from "./components/LeftText";
 import CenterText from "./components/CenterText";
+
+import "./displayMsg.css";
 
 export default function DisplayMsg({ msgArr }) {
   return (

@@ -1,33 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "./typeMsg.css";
 
-import io from "socket.io-client";
-
-const socket = io("http://localhost:5001");
+import socket from "../socket";
 
 export default function TypeMsg(props) {
-  const ref = useRef();
-
   const [inpText, setInpText] = useState("");
 
   const handleOnSubmit = (e) => {
-    e.preventDefault();
-    // const inp = ref.current.value;
+    e.preventDefault(); // Prevents the page from reloading
+
+    // Storing input value
     const inp = document.getElementById("msgInp").value;
-    // emitting event when user sends the message
+
+    // Emitting event when user sends the message
     socket.emit("sendMsg", { inp, name: props.name });
 
+    // Sending data to the parent element i.e., App.jsx
     props.appendFun(`${inp}`, `right`);
 
     setInpText(""); //clears out the input area
   };
+
   return (
     <form action="#" id="sendMsgForm" onSubmit={handleOnSubmit}>
       <input
         type="text"
-        name="msgInp"
         id="msgInp"
-        ref={ref}
         placeholder="Type a message...."
         onChange={(e) => setInpText(e.target.value)}
         value={inpText}
