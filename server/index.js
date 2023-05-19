@@ -7,7 +7,7 @@ const app = express();
 const port = 5000;
 
 // To access req.body
-app.use(express());
+app.use(express.json());
 
 // Fixing CORS issues
 const cors = require("cors");
@@ -26,25 +26,30 @@ const users = {};
 
 // Socket.io endpoints
 io.on("connection", (socket) => {
-  //listens to all connections
   socket.on("new-user-joined", (name) => {
-    console.log("new user", name);
-    //when a connection send "new-user-joined" event it does something
+    // sending data to the frontend
     users[socket.id] = name; //joined user gets id and stored in users
-    socket.broadcast.emit("user-joined", name); //emits event to all the users except the user joined
+    socket.broadcast.emit("user-joined", name);
   });
 
-  socket.on("sendMsg", (msg) => {
+  socket.on("sendMsg", ({ inp, name }) => {
     //listens whenever a msg is sent
-    socket.broadcast.emit("receive", { msg, name: users[socket.id] }); //emits event to all the users except the user joined
+    socket.broadcast.emit("receive", {
+      msg: inp,
+      name: name,
+    });
+  });
+
+  socket.on("disconnect", (name) => {
+    socket.broadcast.emit("user-disconnect", { id: socket.id, name });
   });
 });
 
 // Available routes
-// app.post("/api", require("./routes/messages.js"));
-app.post("/api", (req, res) => {
-  res.send("hello");
-});
+// app.use("/api/msg", require("./routes/messages.js"));
+// app.post("/api/msg", (req, res) => {
+//   res.send("hello");
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

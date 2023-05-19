@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 
-export default function LeftText() {
+// const socket = io("http://localhost:5001");
+
+export default function LeftText(props) {
+  // const [data, setData] = useState({ msg: "", name: "", pos: "" });
+
+  // const append = (msg, name, pos) => {
+  //   setData({ msg: msg, name: name, pos: pos });
+  // };
+
+  // useEffect(() => {
+  //   socket.on("receive", (data) => {
+  //     append(`${data.msg}`, `${data.name}`, `left`);
+  //     // setState({data.msg, })
+  //   });
+  // }, [socket]);
+
   return (
     <div className="msg left">
-      <h1>Rohan</h1>
-      <p>
-        How are you? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Nobis reprehenderit itaque corrupti vitae aliquid labore dolorum iste
-        praesentium voluptate maxime.
-      </p>
+      <h1>{props.name}</h1>
+      <p>{props.msg}</p>
     </div>
   );
 }

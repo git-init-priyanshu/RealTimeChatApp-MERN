@@ -10,12 +10,12 @@ export default function TypeMsg(props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const inp = ref.current.value;
-    console.log(inp);
+    // const inp = ref.current.value;
+    const inp = document.getElementById("msgInp").value;
+    // emitting event when user sends the message
+    socket.emit("sendMsg", { inp, name: props.name });
 
-    // Whenever user types a msg and sends it then emit this event
-    socket.emit("sendMsg", inp);
-    props.appendFun(`You: ${inp}`, `right`);
+    props.appendFun(`${inp}`, `right`);
 
     setInpText(""); //clears out the input area
   };
