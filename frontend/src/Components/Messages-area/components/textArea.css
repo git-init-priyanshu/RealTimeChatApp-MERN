@@ -1,0 +1,38 @@
+.msg {
+  max-width: 35%;
+  margin: 17px 2px;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-wrap: break-word;
+}
+.left {
+  float: left;
+  clear: both;
+  background-color: #349cff;
+  border-radius: 0px 10px 10px 10px;
+  box-shadow: -3px 3px 17px 2px #94cfff43;
+}
+h1 {
+  margin: 0;
+  font-size: medium;
+  border-bottom: 1px solid white;
+}
+p {
+  margin: 0;
+}
+.right {
+  float: right;
+  clear: both;
+  background-color: #45cd45;
+  border-radius: 10px 0px 10px 10px;
+  box-shadow: 3px 3px 17px 2px #94cfff43;
+}
+.center {
+  clear: both;
+  max-width: 24%;
+  background-color: #585858;
+  color: #adadad;
+  margin: auto;
+  margin-top: 17px;
+  text-align: center;
+}

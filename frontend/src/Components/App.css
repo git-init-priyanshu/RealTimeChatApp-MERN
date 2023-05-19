@@ -1,0 +1,11 @@
+.homeText {
+  border: none;
+  text-align: center;
+  font-size: large;
+  translate: 0 50%;
+  & > a {
+    font-weight: 100;
+    color: #349cff;
+    cursor: pointer;
+  }
+}

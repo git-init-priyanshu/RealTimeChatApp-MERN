@@ -1,4 +1,5 @@
 import React from "react";
+import "./textArea.css";
 
 export default function LeftText({ msg }) {
   return (

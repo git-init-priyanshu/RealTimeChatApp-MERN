@@ -1,0 +1,32 @@
+.container {
+  max-width: 955px;
+  margin: auto;
+  margin-top: 3vh;
+  height: 80vh;
+  border-radius: 10px;
+  box-shadow: 2px 2px 7px 0px #94cfff43;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Making Scrollbar invisible */
+
+/* Hide the scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em; /* Adjust this value to set the width of the invisible scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; /* Set the background color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Set the background color of the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent; /* Set the background color of the handle on hover */
+}

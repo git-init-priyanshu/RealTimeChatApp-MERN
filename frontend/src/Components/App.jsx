@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import DisplayMsg from "./Components/DisplayMsg";
-import TypeMsg from "./Components/TypeMsg";
+import { useEffect, useState } from "react";
+import "./App.css";
+import DisplayMsg from "./Messages-area/DisplayMsg";
+import TypeMsg from "./Input-area/TypeMsg";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:5001");

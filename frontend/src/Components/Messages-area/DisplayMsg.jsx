@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
-import RightText from "./RightText";
-import LeftText from "./LeftText";
-import CenterText from "./CenterText";
-import io from "socket.io-client";
-
-const socket = io("http://localhost:5001");
+import React from "react";
+import "./displayMsg.css";
+import RightText from "./components/RightText";
+import LeftText from "./components/LeftText";
+import CenterText from "./components/CenterText";
 
 export default function DisplayMsg({ msgArr }) {
-  // useEffect(() => {
-  //   socket.on("receive" , (data)=>{
-
-  //   })
-  // }, []);
-
   return (
     <div className="container">
       {msgArr.map((item) => {
