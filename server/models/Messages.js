@@ -14,6 +14,10 @@ const Message = new Schema({
     type: String,
     default: "",
   },
+  isOnline: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Message", Message);

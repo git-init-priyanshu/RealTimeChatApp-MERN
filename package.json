@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "client": "cd frontend && npm run dev",
+    "server": "cd server && nodemon socket.js",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
+  },
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
