@@ -8,6 +8,10 @@ import "./App.css";
 import socket from "./socket";
 
 function App() {
+  useEffect(() => {
+    const fetchDB = fetch("http://localhost:5000/");
+  }, [msgArr]);
+
   // Stores name of the user
   const [name, setName] = useState("");
 
