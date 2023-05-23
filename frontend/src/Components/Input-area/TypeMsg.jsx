@@ -16,7 +16,7 @@ export default function TypeMsg(props) {
     socket.emit("sendMsg", { inp, name: props.name });
 
     // Sending data to the parent element i.e., App.jsx
-    props.appendFun(`${inp}`, `right`);
+    props.appendFun(`${props.name}`, `${inp}`, `right`, true);
 
     setInpText(""); //clears out the input area
   };

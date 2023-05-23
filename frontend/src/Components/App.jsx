@@ -14,10 +14,26 @@ function App() {
   // Array containing objects as its elements
   const [msgArr, setMsgArr] = useState([]);
 
+  // Fetching all the data
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch("http://localhost:5000/api/fetchdata", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const dataJson = await data.json();
+      // setMsgArr(msgArr.concat(dataJson));
+      setMsgArr(dataJson);
+    };
+    fetchData();
+  }, []);
+
   // The main function of entire application
-  const append = (msg, position, name) => {
+  const append = (name, msg, position, isOnline) => {
     setMsgArr((currentArr) => {
-      return [...currentArr, { msg, position, name }];
+      return [...currentArr, { name, msg, position, isOnline }];
     });
   };
 
@@ -31,15 +47,19 @@ function App() {
 
       // Handler which listens to the event when a user join
       socket.on("user-joined", (name) => {
-        append(`${name} joined the chat`, `center`, `${name}`);
+        append(`${name}`, `${name} joined the chat`, `center`, true);
       });
 
       // Handler which listens to the event when a user receives a message
       socket.on("receive", (data) => {
         if (data.name !== userName) {
-          append(`${data.msg}`, `left`, `${data.name}`);
-          console.log("append");
+          append(`${data.name}`, `${data.msg}`, `left`, true);
         }
+
+        // Emitting event whenever the user disconnects
+        window.addEventListener("offline", () => {
+          socket.emit("disconnect", name);
+        });
       });
     }
   }, []);
@@ -48,7 +68,7 @@ function App() {
     <>
       {name ? (
         <div>
-          <DisplayMsg msgArr={msgArr} />
+          <DisplayMsg msgArr={msgArr} name={name} />
           <TypeMsg
             appendFun={(inpMsg, inpPos, name) => append(inpMsg, inpPos, name)}
             name={name}

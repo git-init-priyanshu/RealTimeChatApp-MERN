@@ -13,8 +13,7 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors({ origin: "http://127.0.0.1:5173" }));
 
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
+// All routes
+app.use("/api", require("./routes/fetchData"));
 
 module.exports = { app };
