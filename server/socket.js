@@ -5,7 +5,7 @@ const userJoin = async (name) => {
   await Message.create({
     name: name,
     msg: `${name} joined the chat`,
-    positon: "center",
+    position: "center",
     isOnline: true,
   });
 };
