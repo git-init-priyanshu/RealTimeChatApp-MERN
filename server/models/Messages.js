@@ -10,9 +10,13 @@ const Message = new Schema({
     type: String,
     default: "",
   },
-  positon: {
+  position: {
     type: String,
     default: "",
+  },
+  isOnline: {
+    type: Boolean,
+    default: false,
   },
 });
 
